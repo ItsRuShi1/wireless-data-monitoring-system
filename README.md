@@ -71,6 +71,10 @@ The following libraries are required to compile this project:
 ---
 
 ## 👤 Author
-* **Rushikesh Gadade** 
-* Date: February 2025
+* **Rushikesh Gadade** @ItsRuShi1 [github.com/ItsRuShi1] 
 * Project: Wireless Data Monitoring System
+
+## Contributions
+* **Chaitanya Bolake** @ChaitanyaBolake [github.com/ChaitanyaBolake]
+*  API Integration and Telegram Bot Implementation
+
