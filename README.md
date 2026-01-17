@@ -1,56 +1,76 @@
-:Author: Rushikesh Gadade
-:Date: 16/02/2025
-:Revision: 1.0
-:License: Public Domain
+# Wireless Environmental Monitoring & Control System 🌿
 
-= Project: Tech Titans Smart Agriculture System
+A multi-platform IoT solution for smart agriculture using the **ESP32**. This system monitors environmental conditions in real-time and provides remote control capabilities via **Arduino IoT Cloud** and **Telegram**.
 
-This project is an IoT-based environmental monitoring station. It uses an ESP32 to track temperature, humidity, light intensity, and soil moisture, displaying the data on a local TFT screen while providing remote monitoring via Arduino IoT Cloud and a Telegram Bot.
+---
 
-== Step 1: Installation
-1. Install the Arduino IDE.
-2. Install the following libraries:
-   * DHT sensor library
-   * Adafruit GFX & ST7735
-   * UniversalTelegramBot
-   * ArduinoIoTCloud
-3. Set up a new "Thing" in Arduino IoT Cloud and link the variables: `lDR`, `sOILMOISTURE`, `temperature`, `humidity`, and `motorSwitch`.
+## 🚀 Key Features
+* **Local Dashboard:** 1.8" ST7735 TFT display showing Temperature, Humidity, Light, and Soil Moisture with custom icons.
+* **Cloud Integration:** Real-time data logging and motor control via the Arduino IoT Cloud dashboard.
+* **Telegram Bot:** * Receive automated sensor reports every 2 minutes.
+    * Control the motor remotely using `/on` and `/off` commands.
+    * Check system status anytime with `/status`.
+* **Offline Resilience:** The local display and sensors continue to work even if Wi-Fi is lost.
 
-== Step 2: Assemble the circuit
-Assemble the circuit using the following pinout:
-* **DHT11:** GPIO 21
-* **LDR:** GPIO 34
-* **Soil Sensor:** GPIO 35
-* **TFT Display:** CS:25, RST:26, DC:27
-* **Relay/Fan:** GPIO 13
+---
+
+## 🛠️ Hardware Components
+| Component | Purpose | Pin (ESP32) |
+| :--- | :--- | :--- |
+| **ESP32** | Brain of the project | - |
+| **DHT11** | Temp & Humidity | GPIO 21 |
+| **Soil Moisture Sensor** | Moisture detection | GPIO 35 |
+| **LDR (Photoresistor)** | Light intensity | GPIO 34 |
+| **ST7735 TFT 1.8"** | Local visualization | CS:25, RST:26, DC:27 |
+| **Relay & Fan/Motor** | Cooling/Irrigation | GPIO 13 |
 
 
 
-== Step 3: Load the code
-1. Open `wrdm_code.ino` in Arduino IDE.
-2. Fill in your WiFi credentials and Telegram Token in the `thingProperties.h` tab.
-3. Upload the code to your ESP32 board.
+---
 
-=== Folder structure
-....
- Wireless Data Monitoring System        => Main project folder
-  ├── wrdm_code.ino       => Main Arduino sketch
-  ├── thingProperties.h    => Cloud configuration & credentials
-  ├── layout.png           => Circuit diagram image
-  └── ReadMe.adoc          => This documentation file
-....
+## 💻 Software & Libraries
+The following libraries are required to compile this project:
+* `DHT sensor library` (Adafruit)
+* `Adafruit GFX` & `ST7735`
+* `UniversalTelegramBot`
+* `ArduinoIoTCloud`
+* `WiFiClientSecure`
 
-=== BOM (Bill of Materials)
+---
 
-|===
-| ID | Part name       | Quantity
-| U1 | ESP32 Dev Kit   | 1        
-| S1 | DHT11 Sensor    | 1        
-| S2 | Soil Moisture   | 1        
-| S3 | LDR (Photoresistor)| 1      
-| D1 | ST7735 TFT 1.8" | 1        
-| K1 | 5V Relay Module | 1        
-|===
+## ⚙️ Setup Instructions
 
-=== Help
-For Telegram Bot setup, visit the @BotFather on Telegram. For Arduino Cloud issues, check the official Arduino IoT Cloud documentation.
+### 1. Telegram Bot Setup
+1. Message [@BotFather](https://t.me/botfather) on Telegram to create a bot.
+2. Copy the **API Token** and paste it into the `BOT_TOKEN` variable in the code.
+3. Use [@IDBot](https://t.me/myidbot) to get your **Chat ID** and paste it into `CHAT_ID`.
+
+### 2. Arduino IoT Cloud
+1. Create a new **Thing**.
+2. Add the following variables:
+   * `lDR` (Integer)
+   * `sOILMOISTURE` (Integer)
+   * `temperature` (Float)
+   * `humidity` (Float)
+   * `motorSwitch` (Boolean)
+3. Link your ESP32 board and configure your Network credentials.
+
+### 3. Deployment
+1. Open the `.ino` file in Arduino IDE.
+2. Ensure `thingProperties.h` is in the same folder.
+3. Select **DOIT ESP32 DEVKIT V1** and click **Upload**.
+
+---
+
+## 🎮 Telegram Commands
+* `/start` - Displays the welcome message and available commands.
+* `/on` - Activates the fan/motor.
+* `/off` - Deactivates the fan/motor.
+* `/status` - Reports if the motor is currently running.
+
+---
+
+## 👤 Author
+* **Rushikesh Gadade** 
+* Date: February 2025
+* Project: Wireless Data Monitoring System
